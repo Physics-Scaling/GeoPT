@@ -1,0 +1,8 @@
+h5py==3.8.0
+scipy==1.7.3
+torch
+vtk
+timm
+matplotlib
+einops
+pyvista

@@ -1,0 +1,24 @@
+python run.py \
+--gpu 7 \
+--data_path ./drivAerml_npys \
+--loader DrivAerML \
+--task GeoPT_finetune \
+--dynamics drivAerml \
+--ntrain 100 \
+--ntest 20 \
+--space_dim 3 \
+--fun_dim 11 \
+--out_dim 4 \
+--normalize 1 \
+--model Transolver \
+--n_hidden 256 \
+--n_heads 8 \
+--n_layers 8 \
+--mlp_ratio 2 \
+--slice_num 32 \
+--batch-size 1 \
+--epochs 200 \
+--eval 0 \
+--save_name drivAerml_geopt_transolver_new_data \
+--finetune 1 \
+--finetune_name GeoPT_8layers

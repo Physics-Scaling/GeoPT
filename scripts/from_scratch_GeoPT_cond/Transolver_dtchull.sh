@@ -1,0 +1,23 @@
+python run.py \
+--gpu 2 \
+--data_path ./dtchull_npys \
+--loader DTCHull \
+--task GeoPT_finetune \
+--dynamics hull \
+--geotype unstructured \
+--space_dim 3 \
+--fun_dim 11 \
+--out_dim 4 \
+--normalize 1 \
+--model Transolver \
+--n_hidden 256 \
+--n_heads 8 \
+--n_layers 8 \
+--mlp_ratio 2 \
+--slice_num 32 \
+--ntrain 100 \
+--ntest 20 \
+--batch-size 1 \
+--epochs 200 \
+--eval 0 \
+--save_name dtchull_transolver_8layers_geopt_cond
