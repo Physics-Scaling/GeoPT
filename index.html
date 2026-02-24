@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training">
+  <meta name="keywords" content="Neural Simulation, PDE Solving, Self-Supervised Pre-Training">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wuhaixu2016.github.io/">Haixu Wu</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.minghaoguo.com/">Minghao Guo</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://zongyi-li.github.io/">Zongyi Li</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://frank-zy-dou.github.io/">Zhiyang Dou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ise.thss.tsinghua.edu.cn/~mlong/">Mingsheng Long</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://people.csail.mit.edu/kaiming/">Kaiming He</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cdfg.csail.mit.edu/wojciech">Wojciech Matusik</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MIT CSAIL,</span>
+            <span class="author-block"><sup>2</sup>Tsinghua University</span>
+            <span class="author-block"><sup> *</sup>Equal Contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2402.02366"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Physics-Scaling/GeoPT"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/GeoPT"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <img src="https://huggingface.co/front/assets/huggingface_logo.svg"
+     alt="Hugging Face"
+     style="height: 1em;">
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png"
+           alt="Teaser Image"
+           style="width: 100%; height: auto;">
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Neural simulators promise efficient surrogates for physics simulation, but scaling them is bottlenecked by the prohibitive cost of generating high-fidelity training data. Pre-training on off-the-shelf geometries offers a natural alternative, yet faces a fundamental gap: supervision on static geometry alone ignores dynamics and can lead to negative transfer on physics tasks.
+          </p>
+          <p>
+          We present GeoPT, a unified pre-trained model for general physics simulation based on lifted geometric pre-training. The core idea is to augment geometry with synthetic dynamics, enabling dynamics-aware self-supervision without physics labels. 
+          Pre-trained on over one million samples, GeoPT consistently improves industrial-fidelity benchmarks spanning fluid mechanics for cars, aircraft, and ships, and solid mechanics in crash simulation, reducing labeled data requirements by 20-60% and accelerating convergence by 2x. These results show that lifting with synthetic dynamics bridges the geometry-physics gap, unlocking a scalable path for neural simulation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<section class="subsection">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-vcentered">
+
+      <!-- Left Column -->
+      <div class="column has-text-centered">
+        <h2 class="title is-4">Native Space Pre-Training</h2>
+        
+        <p>Geometry-only supervision is meaningless for physics.</p>
+        <p> </p>
+        <img src="./static/images/gap.png"
+             style="width: 100%; height: auto; margin-top: 1rem;">
+      </div>
+
+      <!-- Middle VS -->
+      <div class="column is-narrow has-text-centered">
+        <h2 class="title is-2" style="opacity: 0.6;">v.s.</h2>
+      </div>
+
+      <!-- Right Column -->
+      <div class="column has-text-centered">
+        <h2 class="title is-4">Lifted Pre-Training</h2>
+        
+        <p>We perform dynamics-lifted self-supervised pre-training.</p>
+        <p> </p>
+        <img src="./static/images/lifted_space.png"
+             style="width: 100%; height: auto; margin-top: 1rem;">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content has-text-left">
+          
+          <h2 class="title is-3 has-text-left">Scaling Physics Simulation with GeoPT</h2>
+          <p>
+            🏆 Successfully bridge the geometry-physics gap in the dynamics-lifted space; 
+          </p>
+          <p>
+            🚀 Generate millions of training samples in days, 1000x faster than physics supervision; 
+          </p>
+          <p>
+          🔥 fast fine-tuning by configuring dynamics condition to “prompt” the pre-trained model.
+          </p>
+          <img src="./static/images/geopt.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px;">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="subsection">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content has-text-left">
+          
+          <h2 class="title is-3 has-text-left">20-60% Training Data Saving, 2x Faster Convergence</h2>
+          <img src="./static/images/results.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 1rem;">
+          <p>
+          Geometry-only pre-training refers to optimizing the model to predict vector distance function (VDF) based on spatial position. Geometry-only conditioning adopts the geometry representation extracted by pre-trained Hunyuan-3D as an auxiliary feature.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content has-text-left">
+    <h2 class="title is-3">Better Scalability</h2>
+    <h2 class="title is-4">Scaling with Model Size</h2>
+    <p class="content justify">
+      <img src="static/images/scaling.png" class="interpolation-image" width="35%" align="right" style="margin:0% 4%; margin-top: -4rem;"/>
+    Although the backbone <a href="https://arxiv.org/abs/2402.02366">Transolver</a> shows nice scalability in sufficient data scenarios, it still faces a scaling bottleneck in limited-data industrial simulation, which may be caused by overfitting. 
+    </p><p>
+    In contrast, GeoPT that is pre-trained with large-scale geometry data can regularize the model hypothesis space to alleviate potential overfitting, thereby consistently benefiting from increasing model size. Such scalability can serve as the basis for building physics foundation model.
+    </p>
+
+    <h2 class="title is-4">Case Study on DrivAerML (Varied Geometry)</h2>
+          <img src="./static/images/scaling_vis.png"
+               alt="Overview Image"
+               style="width: 90%; height: auto; border-radius: 12px;margin-bottom: 1rem;">
+    <p>
+    (a) visualization of the prediction results with the worst relative L2 performance in DrivAerML, (b) the error map of surface pressure and surrounding velocity, where the huge model (32 layers) yields more accurate results than base (8 layers).
+    </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="subsection">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content has-text-left">
+    <h2 class="title is-3">Generalization to Other Physics Domains</h2>
+GeoPT is pre-trained with highly diverse dynamics, endowing it with strong potential to generalize across physics domains. We apply GeoPT to radiosity simulation, a classical light transport problem, which involves fundamentally different governing physics and geometry boundaries from main experiments. GeoPT continues to yield consistent performance improvements.
+    <img src="./static/images/rad.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px;margin-top: 1rem;margin-bottom: 1rem;">        
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="subsection">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <div class="content has-text-left">
+    <h2 class="title is-3">More Showcases</h2>
+        <h2 class="title is-4">NASA-CRM (Varied Geometry, Speed, AoA)</h2>
+    <img src="./static/images/nasa.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px;">
+                <h2 class="title is-4">AirCraft (Varied Geometry, Speed, AoA, Slipside)</h2>
+    <img src="./static/images/aircraft.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px;">
+        <h2 class="title is-4">DTCHull (Varied Geometry, Yaw Angle)</h2>
+    <img src="./static/images/dtchull.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px;">
+        <h2 class="title is-4">Car-Crash (Varied Impact Angle)</h2>
+    <img src="./static/images/crash.png"
+               alt="Overview Image"
+               style="width: 100%; height: auto; border-radius: 12px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{wu2026GeoPT,
+  author    = {Haixu Wu, Minghao Guo, Zongyi Li, Zhiyang Dou, Mingsheng Long, Kaiming He, Wojciech Matusik},
+  title     = {GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training},
+  booktitle = {arXiv preprint arXiv:},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="columns is-centered">
+    <div class="column is-8">
+      <div class="content has-text-centered">
+        Website template borrowed from
+        <a href="https://github.com/nerfies/nerfies.github.io">
+          Nerfies</a>.
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
