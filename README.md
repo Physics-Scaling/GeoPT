@@ -1,5 +1,8 @@
 # <img src=".\pic\logo.png" alt="Logo" width="30" style="vertical-align: middle;">GeoPT
 
+[![Project Page](https://img.shields.io/badge/Project_Page-blue)](https://physics-scaling.github.io/GeoPT/)
+[![Paper](https://img.shields.io/badge/arXiv-Paper-b31b1b.svg?logo=arxiv)](https://arxiv.org/abs/2602.20399)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Code-black?logo=github)](https://github.com/Physics-Scaling/GeoPT)
 [![Hugging Face](https://img.shields.io/badge/Hugging_Face-GeoPT-F8D44E.svg?logo=huggingface)](https://huggingface.co/GeoPT)
 
 This is the official code base for GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training. [[Paper]](https://arxiv.org/abs/2602.20399)
