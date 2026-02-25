@@ -2,7 +2,7 @@
 
 [![Hugging Face](https://img.shields.io/badge/Hugging_Face-GeoPT-F8D44E.svg?logo=huggingface)](https://huggingface.co/GeoPT)
 
-This is the official code base for the paper GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training. [[Paper]](https://arxiv.org/abs/2602.20399)
+This is the official code base for GeoPT: Scaling Physics Simulation via Lifted Geometric Pre-Training. [[Paper]](https://arxiv.org/abs/2602.20399)
 
 <p align="center">
 <img src=".\pic\GeoPT.png" height = "120" alt="" align=center />
