@@ -1,0 +1,4 @@
+numpy>=2.4.3
+trimesh>=4.9.0
+fcpw>=1.2.0
+polyscope>=2.5.0
