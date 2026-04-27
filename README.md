@@ -5,6 +5,7 @@
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Code-black?logo=github)](https://github.com/Physics-Scaling/GeoPT)
 [![Hugging Face](https://img.shields.io/badge/Hugging_Face-GeoPT-F8D44E.svg?logo=huggingface)](https://huggingface.co/GeoPT)
 
+:triangular_flag_on_post:**News** (2026.04) GeoPT won the **Best Paper Award** at [ICLR 2026 Workshop on Foundation Models for Science](https://fm-science.github.io/).
 
 :triangular_flag_on_post:**News** (2026.04) We have released the pre-training data generation code. Please check [./data_generation](https://github.com/Physics-Scaling/GeoPT/tree/main/data_generation).
 
